@@ -1,0 +1,69 @@
+body {
+  background: #E6E6C0;
+  width: 100%;
+  text-align: center;
+  height: 400px;
+}
+.wrapper {
+  margin: 0 auto;
+}
+h1 {
+  font-size: 9em;
+  padding-left: 100px;
+  color: #CA4848;
+}
+
+.spin
+{
+  position: relative;
+  animation: spinme 5s infinite;
+  -webkit-animation: spinme 1.5s infinite; /* Safari and Chrome */
+}
+
+@keyframes spinme
+{
+  0%   {-webkit-transform: rotateY(0deg); /* Chrome, Safari, Opera */
+    transform: rotateY(0deg); /* Standard syntax */}
+  25%  {-webkit-transform: rotateY(90deg); /* Chrome, Safari, Opera */
+    transform: rotateY(90deg); /* Standard syntax */}
+  50%  {-webkit-transform: rotateY(180deg); /* Chrome, Safari, Opera */
+    transform: rotateY(180deg); /* Standard syntax */}
+  75%  {-webkit-transform: rotateY(270deg); /* Chrome, Safari, Opera */
+    transform: rotateY(270deg); /* Standard syntax */}
+  100% {-webkit-transform: rotateY(360deg); /* Chrome, Safari, Opera */
+    transform: rotateY(360deg); /* Standard syntax */}
+}
+
+@-webkit-keyframes spinme /* Safari and Chrome */
+{
+  0%   {-webkit-transform: rotateY(0deg); /* Chrome, Safari, Opera */
+    transform: rotateY(0deg); /* Standard syntax */}
+  25%  {-webkit-transform: rotateY(90deg); /* Chrome, Safari, Opera */
+    transform: rotateY(90deg); /* Standard syntax */}
+  50%  {-webkit-transform: rotateY(180deg); /* Chrome, Safari, Opera */
+    transform: rotateY(180deg); /* Standard syntax */}
+  75%  {-webkit-transform: rotateY(270deg); /* Chrome, Safari, Opera */
+    transform: rotateY(270deg); /* Standard syntax */}
+  100% {-webkit-transform: rotateY(360deg); /* Chrome, Safari, Opera */
+    transform: rotateY(360deg); /* Standard syntax */}
+}
+
+.title {
+  z-index: 20;
+  position: relative;
+  font-weight: bold;
+}
+.title-shadow {
+  position: relative;
+  z-index: -10;
+  letter-spacing: 3px;
+  margin: -105px 0 0 20px;
+  color: #111;
+  transform: rotateX(86deg);
+  text-shadow: 0 0 15px #111;
+  font-style: italic;
+}
+.title-shadow .spin {
+  font-style: normal;
+  margin: 0;
+}
