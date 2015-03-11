@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>CSS Styleguide</title>	
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<!-- Future Shop style -->
+		<link rel="stylesheet" type="text/css" href="http://www.bestbuy.ca/css/bootstrap.css">
+
+		<!-- UI Guide style -->
+		<link href="assets/stylesheets/styles.css" rel="stylesheet">		
+
+		<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+		<!--[if lt IE 9]>
+		  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+
+		<!--[if IE]>
+		<link type="text/css" rel="stylesheet" media="all" href="http://dev1-bbyca.ca.bestbuy.com/css/ie/ie.css" />
+		<![endif]-->
+
+		<!--[if lt IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="http://dev1-bbyca.ca.bestbuy.com/css/ie/ie7.css" />
+		<![endif]-->
+
+		<!--[if IE 6]>
+		<link type="text/css" rel="stylesheet" media="all" href="http://dev1-bbyca.ca.bestbuy.com/css/ie/ie6.css" />
+		<![endif]-->
+
+        <!--[if CP]>
+		<link type="text/css" rel="stylesheet" media="all" href="http://chris-is-kinda.neat.com/woot.css" />
+		<![endif]-->
+
+		<style>
+			// navigation example css edit
+			.parent-departments .sub-nav {
+				height: 375px;
+			}
+
+			.global-header ul,
+			.global-header li {
+				list-style: none;
+				margin: 0;
+			}
+
+			// conflicted prettyprint fix - only for javascript ui guide
+			ol.linenums .linenums {
+				margin: 0;
+			}
+
+			ol.linenums .linenums li {
+				list-style: none;
+				margin: 0;
+			}
+		</style>
+	</head>
+
+	<body data-spy="scroll" data-target=".bs-sidebar" data-offset="50" c;>
+
+		<header class="navbar navbar-fixed-top">
+			<div class="container navbar-inner">
+				<div class="logo pull-left"></div>
+				<ul class="inline-list nav pull-right">
+					<li class=""><a href="./index.html">Overview</a></li>
+					<li class=""><a href="./components-2.html">Components</a></li>
+					<li class=""><a href="./javascript.html">Javascript plugins</a>
+					<li class="active"><a href="./style-guide.html">CSS Styleguide</a></li>
+				</ul>
+				<div class="clear"></div>
+			</div>
+		</header>
+
+		<div class="container content-wrapper">
+
+			<!-- Subhead
+			================================================== -->
+
+			<div class="jumbotron">
+				<h1>CSS Style guide</h1>
+				<p>Simple and helpful CSS coding standards. Obey.</p>
+			</div>
+
+			<div class="row">
+				<div class="span3">
+					<div class="bs-sidebar">
+						<ul class="nav bs-sidenav sidebar-nav">
+							<li><a href="#general">General Rules</a></li>
+							<li><a href="#selectors">Selectors</a></li>
+              <li><a href="#oocss">Objects oriented CSS with Sass</a></li>
+							<li><a href="#file-structure">File Structure</a></li>
+							<li><a href="#indentation">Indentation</a></li>
+							<li><a href="#commenting">Commenting</a></li>
+							<li><a href="#sassoverless">Why are we switching from Less to Sass</a></li>
+						</ul>
+					</div><!-- bs-sidebar -->
+				</div><!-- span3 -->
+
+				<div class="span9">
+
+					<!-- General Rules
+					================================================== -->
+					<section id="general">
+						<div class="section-heading">
+							<h1>General Rules</h1>
+						</div>
+
+						<p>These are rules that do not fit under any of the categories below.</p>
+
+						<ul class="dotted">
+							<li>Use the shortest HEX values to define colors</li>
+							<li>When defining a variable, use camel cases.</li>
+							<li>When defining a class, use hypens to separate words in classes</li>
+							<li>Don't use margin-top, padding-bottom, etc. Instead use margin: 10px auto auto auto; whenever possible for specificity/organization reasons.</li>
+							<li>Variablize All Common Numbers, and Numbers with Meaning</li>
+							<li>Variablize All Colors</li>
+							<li>In your global stylesheet, @import a _shame.scss file last.</li>
+						</ul>
+
+						<h2>Example Usage</h2>
+						<pre class="prettyprint">
+// Bad Code
+$brand-color: blue;
+
+.bigBox {
+	color: $brand-color;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+// Good Code
+$brandColor: #666;
+
+.big-box {
+	color: $brandColor;
+	margin: 10px auto 20px;
+}
+
+$zHeader: 2000;
+$zOverlay: 5000;
+$zMessage: 5050;
+
+.header {
+  z-index: $zHeader;
+}
+.overlay {
+  z-index: $zOverlay;
+}
+.message {
+  z-index: $zMessage;
+}
+
+@import "shame" //end of file
+						</pre>
+
+					</section><!-- General rules -->
+
+					<!-- Using Selectors
+					================================================== -->
+					<section id="selectors">
+						<div class="section-heading">
+							<h1>Selectors</h1>
+						</div>
+
+						<ul class="dotted">
+							<li>Don't use IDs for styling</li>
+							<li>Use child selectors by default over ascendant selector</li>
+              <li>Avoid tag selectors or use them only with semantic HTML elements that are not used more than 40 times in the page and always using direct child selector (.my-module > h1 , .my-module > form)</li>
+							<li>Use class names as the right most selector</li>
+							<li>Class names should be very generic as they will be re-usable</li>
+							<li>If you must use an id selector (#selector) make sure that you have no more than one in your rule declaration.</li>
+              <li>Use as little specificity as possible</li>
+							<li>Never use more than 3 levels deep. There is a three selector limit, avoid unnecessary nesting.</li>
+						</ul>
+
+						<h2>Example Usage</h2>
+						<pre class="prettyprint">
+// Bad Code
+#tv-listings #first-tv {
+	margin-top: 30px;
+}
+
+div.my-module {} //Wrong because you should always use as little specificity as possible
+.my-module .my-element {} //You should avoid ascendant selectors
+.my-module h1 {} //Wrong use in this case the child selector must be used to increase performances
+.my-module > div {} //Wrong use of tag as the div element doesn't have any semantic meaning and is used many times on the page
+.my-module > .content .author-description .name //This selector uses more than 3 generations
+
+// Good Code
+.listings .first-listing {
+	margin-top: 30px;
+}
+
+.my-module {} 
+.my-module > .my-element {}
+.my-module > h1 {}
+
+.weather,
+.maps {
+  .cities {
+    li {
+      // no more!
+    }
+  }
+}
+						</pre>
+
+					</section><!-- Using Selectors -->
+
+					<!-- Using Object oriented Css with Sass
+					================================================== -->
+					<section id="oocss">
+						<div class="section-heading">
+							<h1>Object oriented CSS with Sass</h1>
+						</div>
+
+						<p>Structure of any block should always be defined with a placeholder selector apart from its skin. Here is an example :</p>
+
+						<pre class="prettyprint">
+// Bad Code
+.icon-error {
+	width: 12px;
+    height:12px;
+    color:#f00;
+}
+
+.icon-info {
+	width: 12px;
+    height:12px;
+    color:#ff0;
+}
+
+// Good Code
+%icon {
+    width: 12px;
+    height:12px;
+}
+
+.icon-error {
+	@extend %icon;
+    color:#f00;
+}
+
+.icon-info {
+	@extend %icon;
+    color:#ff0;
+}
+						</pre>
+
+					</section><!-- Using Objects oriented CSS with Sass -->
+
+					<!-- Sass files structure
+					================================================== -->
+					<section id="file-structure">
+						<div class="section-heading">
+							<h1>File structure</h1>
+						</div>
+
+						<ul class="dotted">
+							<li>Global and Section-Specific Sass Files Are just Table of Contents, no styles directly in them.</li>
+							<li>List Vendor/Global Dependancies First, Then Author Dependancies, Then Patterns, Then Parts</li>
+							Break Into As Many Small Files As Makes Sense
+						</ul>
+
+						<pre class="prettyprint">
+/* Vendor Dependencies */
+@import "vendor/compass";
+
+/* Authored Dependencies */
+@import "libraries/colors";
+@import "libraries/mixins";
+
+/* Component */
+@import "modules/tabs";
+@import "modules/modals";
+
+/* Sections */
+@import "sections/header";
+@import "sections/footer";
+
+@import "sections/header/header";
+@import "sections/header/logo";
+@import "sections/header/dropdowns";
+@import "sections/header/nav";
+@import "sections/header/really-specific-thingy";
+						</pre>
+
+						<p><strong>./language-specific/</strong>Contains only variables, mixins and functions or any ressources needed on Sass compilation</p>
+
+						<p><strong>./commons/</strong>Contains Sass files used all over the application. These Sass files compile into CSS stylesheets.</p>
+
+						<p><strong>./libraries/</strong>Contains only variables, mixins and functions or any ressources needed on Sass compilation</p>
+
+            <p><strong>./bootstrap/</strong>Bootstrap framework libraries</p>
+
+            <p><strong>./modules/</strong>SASS patterns intended to be used across the site</p>
+
+            <p><strong>./sections/</strong>: Layouts and other page-specific stylings. Anything that is not intended to be used in multiple places in a versatile way.</p>
+
+            <ul class="dotted">
+              <li>/
+                <ul class="dotted">
+                	<li>language-specific/
+                  	<ul class="dotted">
+                  		<li>fr-ca.scss</li>
+                  	</ul>
+                	</li>
+                	<li>commons/
+                    <ul class="dotted">
+                      <li>ie.scss</li>
+                      <li>ie6.scss</li>
+                      <li>ie7.scss</li>
+                      <li>main.scss</li>
+                    	<li>bootstrap.scss</li>
+                    </ul>
+                  </li>
+                  <li>libraries/
+                    <ul class="dotted">
+                      <li>_functions.scss</li>
+                      <li>_mixins.scss</li>
+                      <li>_variables.scss</li>
+                    </ul>
+                  </li>
+                  <li>bootstrap/
+                    <ul class="dotted">
+                      <li>_alerts.scss</li>
+                      <li>_breadcrumbs.scss</li>
+                      <li>_buttons.scss</li>
+                      <li>_type.scss</li>
+                      <li>_forms.scss</li>
+                      <li>_tables.scss</li>
+                      <li>_utilities.scss</li>
+                    </ul>
+                  </li>
+                  <li>modules/
+                    <ul class="dotted">
+                     	<li>_accordion.scss</li>
+                     	<li>_animate.scss</li>
+                     	<li>_animation.scss</li>
+                     	<li>_layouts.scss</li>
+                      <li>_components.scss</li>
+                      <li>_type-geeksquad.scss</li>
+                      <li>_products.scss</li>
+                      <li>_reset.scss</li>
+                      <li>_specialfeatures.scss</li>
+                    </ul>
+                  </li>
+                  <li>sections/
+                    <ul class="dotted">
+											<li>_compare.scss</li>
+                      <li>_catalog.scss</li>
+                      <li>_checkout.scss</li>
+                      <li>_checkout.scss</li>
+                      <li>_footer.scss</li>
+                      <li>_header.scss</li>
+                      <li>_homepage.scss</li>
+                      <li>_pdp.scss</li>
+                      <li>_plp.scss</li>
+                      <li>_rating.scss</li>
+                      <li>_search.scss</li>
+                      <li>_vendor.scss</li>
+                      <li>_orderprofile.scss</li>
+                      <li>_geeksquad_splash.scss</li>
+                      <li>_csr.scss</li>
+                      <li>_interstitial.scss</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+
+					</section><!-- Sass files structure -->
+					
+					<!-- Indentation
+					================================================== -->
+					<section id="indentation">
+						<div class="section-heading">
+							<h1>Indentation</h1>
+						</div>
+
+						<ul class="dotted">
+							<li>Use 2 spaces for each level of indentation, do not use tabs for indentation. They lead to inconsistent display of the source code, since many text editors and most text viewers (like web browsers) cannot have their “tab size” configured.</li>
+							<li>Declarations (property/value pairs) should be indented one level relative to their selector.</li>
+							<li>Rulesets within a mixin block or a media query should be indented one level relative to the media/mixin statement.</li>
+							<li>Comments should be indented the same amount as the declaration or ruleset they describe.</li>
+							<li>There is a space after the colon.</li>
+							<li>Alphabetize properties. List @extend(s) first, list "regular" styles next,  list @include(s) next and nested selectors last. Note: Once text is selected, you can press F9 in Sublime Text 2 to organize it alphabetically.</li>
+							<li>Opening bracket on the same line as the rule set.</li>
+							<li>Each property on it&quot;s own line</li>
+						</ul>
+
+						<h2>Example Usage</h2>
+						<pre class="prettyprint">
+// Indentation
+@media print {
+  // This line is indented with 2 spaces, 2 spaces x 1 level of indentation.
+  .example {
+    // This line is indented with 4 spaces, 2 spaces x 2 levels of indentation.
+    padding: 0;
+  }
+}
+
+// Alphabetization rules
+.twitter-button {
+    @extend .btn;
+    @extend .twitter-theme;
+    background:url("./twitter.png");
+    color:blue;
+    @include border-radius(5px);
+    @include clearfix;
+    > h3 {
+    	border-bottom: 1px solid white;
+    	@include transform(rotate(90deg));
+  	}
+}
+						</pre>
+
+					</section><!-- Indentation -->
+	
+					<!-- Commenting
+					================================================== -->
+					<section id="commenting">
+						<div class="section-heading">
+							<h1>Commenting</h1>
+						</div>
+
+						<p>Information about writing comments</p>
+
+						<ul class="dotted">
+							<li>Use single line comment syntax (//) if you don't want your comments in the output file. Use this way of commenting most of the time.</li>
+							<li>Use css comment syntax (/* */) if you want your comments in the output file.</li>
+							<li>Be Generous With Comments</li>
+						</ul>
+
+						<h2>Example Usage</h2>
+						<pre class="prettyprint">
+/* This comment is
+ * several lines long.
+ * since it uses the CSS comment syntax,
+ * it will appear in the CSS output. */
+body { color: black; }
+
+// These comments are only one line long each.
+// They won't appear in the CSS output,
+// since they use the single-line comment syntax.
+a { color: green; }
+						</pre>
+						<p>is compiled to </p>
+						<pre class="prettyprint">
+/* This comment is
+ * several lines long.
+ * since it uses the CSS comment syntax,
+ * it will appear in the CSS output. */
+body {
+  color: black; }
+
+a {
+  color: green; }
+						</pre>
+					</section><!-- Commenting -->
+
+
+					<!-- Why are we switching from Less to Sass
+					================================================== -->
+					<section id="sassoverless">
+						<div class="section-heading">
+							<h1>Why are we switching from Less to Sass</h1>
+						</div>
+
+						<ul class="dotted">
+							<li>SASS is more supported than LESS nowadays.</li>
+              <li>Foundation, Bootstrap, and plenty of other libraries are using SASS and it makes it easier to use these frameworks or libraries if we ever decide to use them</li>
+              <li>SASS allows for coditionals which allow you to write if statements inside property names and selectors and have ternary operators</li>
+              <li>Default variables can be defined, this will create a variable only if it's variable hasn't been defined</li>
+              <li>Sass lets you use control directives: @if, @for, @each and @while. LESS can do these things but in an inefficient and counter-intuitive way (ie. guarded mixins for conditionals, self-referencing recursion for loops)</li>
+              <li>Sass users can utilise the awesome power of the Compass library. There are libraries available to Less users, but nothing really comes close to Compass, which is regularly maintained and contributed to by a huge community. Compass has some really awesome features like dynamic sprite-map generation, legacy browser hacks, and cross-browser support for CSS3 features.</li>
+              <li>LESS is known to have less helpful feedback if you come across errors</li>
+              <li>Sass has many type of data such as 
+                <ul class="dotted">
+                  <li>numbers (e.g. 1.2, 13, 10px)</li>
+                  <li>strings of text, with and without quotes (e.g. "foo", 'bar', baz)</li>
+                  <li>colors (e.g. blue, #04a3f9, rgba(255, 0, 0, 0.5))</li>
+                  <li>booleans (e.g. true, false)</li>
+                  <li>nulls (e.g. null)</li>
+                  <li>lists of values, separated by spaces or commas (e.g. 1.5em 1em 0 2em, Helvetica, Arial, sans-serif)</li>
+                  <li>maps from one value to another (e.g. (key1: value1, key2: value2))</li>
+                </ul>
+              </li>
+						</ul>
+
+						<h2>Example Usage</h2>
+						<pre class="prettyprint">
+
+//Map creation
+$profiles: (
+    bandcamp: #4e9bac,
+    delicious: #248cff,
+    facebook: #3b5998
+);
+
+//Iterate over a map
+@each $profile, $bgcolor in $profiles {
+    .profile-link--#{$profile}:focus,
+    .profile-link--#{$profile}:hover {
+        background: $bgcolor;
+    }
+}
+
+//Output
+.profile-link--bandcamp:focus,
+.profile-link--bandcamp:hover {
+  background: #4e9bac;
+}
+
+.profile-link--delicious:focus,
+.profile-link--delicious:hover {
+  background: #248cff;
+}
+
+.profile-link--facebook:focus,
+.profile-link--facebook:hover {
+  background: #3b5998;
+}
+
+						</pre>
+
+					</section><!-- Advantages of switching from Less to Sass -->
+
+					<!-- Footer
+					================================================== -->
+					<footer class="footer">
+						<p class="pull-left"><a href="../sitemap/index.html">Sitemap</a></p>
+						<p class="pull-right"><a href="#">Back to top</a></p>
+					</footer>
+
+				</div><!-- span9 -->
+			</div><!-- row -->
+		</div><!-- Footer -->
+
+		<!-- Le javascript
+		================================================== -->
+		<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+		<script type="text/javascript" src="assets/js/jquery.js"></script>
+		<script type="text/javascript" src="assets/js/bootstrap.js"></script>
+		<script type="text/javascript" src="assets/js/application.js"></script>
+
+		<script type="text/javascript" src="http://www.bestbuy.ca/jmvc/steal/steal.production.js"></script>
+		<script type="text/javascript" src="http://www.bestbuy.ca/jmvc/libraries/libraries.min.js"></script>
+		<script type="text/javascript" src="http://www.bestbuy.ca/jmvc/core/core.min.js"></script>
+		<script type="text/javascript" src="http://www.bestbuy.ca/jmvc/ui/ui.min.js"></script>
+		<script type="text/javascript" src="assets/js/init-modules.js"></script>
+
+		<script type="text/javascript" src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=css&skin=sunburst"></script>
+
+		</script>
+	</body>
+</html>

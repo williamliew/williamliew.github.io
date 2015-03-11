@@ -1,0 +1,81 @@
+/************
+*
+* Layout 
+*
+************/
+
+@import 'mixins';
+
+.container {
+	line-height: 1.45;
+	width: 1154px;
+}
+
+.span3 {
+	min-height: 1px;
+}
+
+.span9 {
+	width: 920px;
+}
+
+.content-wrapper {
+		padding: 100px 0 20px;
+	&:first-child {
+		padding: 0 0 16px;
+	}
+	&:last-child {
+		padding: 32px 0 0;
+	}
+}
+
+
+/*------------ MODULE ----*/
+.inline-list {
+	display: inline-block;
+	margin: 0;
+	> li {
+			margin: 0 5px 8px 0;
+		&.last-child {
+			margin: 0;
+		}
+	}
+}
+
+.splash-page {
+	background: $navy;
+	color: #fff;
+	.container {
+		text-align: center;
+		width: 500px;
+	}
+}
+
+
+/*------------ MODULE ----*/
+.h-quick-links {
+	margin: 12px 0 0;
+}
+
+.affix {
+	position: fixed;
+	top: 110px;
+}
+
+.sorting-item,
+.layout-toggle li {
+	margin: 0;
+}
+
+
+/*------------ MODULE ----*/
+.facet-list {
+		input[type=checkbox]:checked:after {
+		top: 7px;
+	}
+}
+
+
+.pop {
+	position: relative;
+}

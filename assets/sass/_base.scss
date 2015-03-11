@@ -1,0 +1,65 @@
+/************
+*
+* Base Styles
+*
+************/
+
+@import 'mixins';
+
+/*------------ Base ----*/
+body {
+	color: #4d4d4f;
+	font-family: $arial;
+	font-size: 14px;
+}
+
+/*------------ Typography ----*/
+h1, h2, h3, h4, h5, h6 {
+	margin: 20px 0 5px 0;
+}
+
+p {
+	padding: 0 0 16px 0;
+}
+
+h2 + table,
+h3 + table,
+h4 + table,
+h2 + .row {
+	margin-top: 5px;
+}
+
+/*------------ Layout ----*/
+section {
+	padding: 0 0 16px;
+}
+
+/*------------ Modules ----*/
+ul,
+ul li {
+	list-style: none;
+}
+
+ol {
+	margin: 0 0 9px 25px;
+}
+
+code {
+	background-color: #F7F7F9;
+	border: 1px solid #E1E1E8;
+	color: $navy;
+	padding: 2px 4px;
+}
+
+pre {
+	white-space: pre-wrap;
+	tab-size: 4;
+}
+
+pre,
+code,
+kbd,
+samp {
+	font-family: $courier;
+	font-size: 1em;
+}
