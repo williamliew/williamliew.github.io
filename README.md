@@ -7,6 +7,8 @@ Welcome fellow code person to the UI Guide repository. Here you will find the mo
 
 But really...if you have objections, we shall review and discuss the changes
 
+[UI Guide](http://williamliew.github.io/)
+
 ## Updates
 
 Follow these instructions if you want to change them
