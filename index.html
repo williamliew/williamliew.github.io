@@ -1,17 +1,68 @@
 <html>
 <head>
 	<title>williamliew.github.io</title>
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="css/main.css" />	
 </head>
 <body>
-	<div class="wrapper">
-	<h1 class="title">williamliew.io</h1>
-	<p>work in progress...</p>
-	<ul>
-		<li><a href="/base-css.html">base css styles</a></li>
-		<li><a href="/style-guide.html">style guide</a></li>
-	</ul>
-</div>
+	<div class="row">
+		<header><h1 class="title">lets have lunch</h1></header>
+		
+		<hr />
+		
+		<div class="create-event-form large-4 large-centered columns panel">
+			<div>
+				<h2>Lunch name</h2>
+				<form>
+				  <div class="row">
+				    <div class="large-12 columns">
+				      <label>Your name
+				        <input class="event-planner" type="text" placeholder="E.g Bob Loblaw" />
+				      </label>
+				      <label>Event name
+				        <input class="event-name" type="text" placeholder="e.g. Team lunch" />
+				      </label>
+				      <label>At what time?
+				        <input class="event-name" type="time" placeholder="12.00pm" />
+				      </label>
+					      <input id="checkbox1" type="checkbox"><label for="checkbox1">Transport required?</label>
+							<button type="submit" href="#" class="create-event button radius">Make plan</button>
+				    </div>
+				  </div>
+				</form>
+			</div>
+		</div>
+
+		<div class="room-wrapper hide">
+			<div class="row">
+				<div class="large-8 columns">
+					<h2 class="room-name"></h2>
+				</div>
+				<form class="idea-form large-4 columns">
+					<div class="row collapse">
+						<div class="small-10 columns">
+						<input class="idea-name" type="text" placeholder="Suggest an idea e.g. McDonalds" required>
+						</div>
+						<div class="small-2 columns">
+						<button type="submit" href="#" class="add-idea button postfix">Add</button>
+						</div>
+					</div>
+				</form>
+      </div>
+
+				
+
+			<div class="row">
+							<div class="room"></div>
+			</div>
+
+		</div>
+
+	</div>
+	<!--<ul>
+		<li><h2><a href="bestbuydemo/base-css.html">base css styles</a></h2></li>
+		<li><h2><a href="bestbuydemo/style-guide.html">style guide</a></h2></li>
+	</ul>-->
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>

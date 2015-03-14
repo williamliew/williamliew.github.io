@@ -15,12 +15,15 @@ gulp.task('scripts', function(){
 	.pipe(reload({stream: true}));
 });
 
+/**
 // CSS tasks
 gulp.task('sass', function(){
 	gulp.src('./assets/sass/*.scss')
 //	.pipe(concat('styles.scss'))
 	.pipe(sourceMaps.init())
-	.pipe(sass())
+	.pipe(sass({
+		includePaths: ['app/bower_components/foundation/scss']
+	}))
 	.pipe(sourceMaps.write())
 	.pipe(gulp.dest('./assets/stylesheets'))
 	.pipe(reload({stream: true}));
@@ -36,6 +39,34 @@ gulp.task('default', ['sass', 'scripts'], function() {
     });
 
     gulp.watch("./assets/sass/*.scss", ['sass']);
+    gulp.watch("./assets/js/*.js", ['scripts']);
+    gulp.watch("./*.html").on('change', reload({stream: true}));
+}); 
+**/
+
+// CSS tasks
+gulp.task('sass', function(){
+	gulp.src('css/*.scss')
+//	.pipe(concat('styles.scss'))
+	.pipe(sourceMaps.init())
+	.pipe(sass({
+		includePaths: ['app/bower_components/foundation/scss/*.scss']
+	}))
+	.pipe(sourceMaps.write())
+	.pipe(gulp.dest('css'))
+	.pipe(reload({stream: true}));
+});
+
+// Server and watch tasks
+gulp.task('default', ['sass', 'scripts'], function() {
+
+    browserSync({
+        server: {
+            baseDir: "./"
+        }
+    });
+
+    gulp.watch("css/*.scss", ['sass']);
     gulp.watch("./assets/js/*.js", ['scripts']);
     gulp.watch("./*.html").on('change', reload);
 });
